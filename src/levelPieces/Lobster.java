@@ -7,6 +7,7 @@ import gameEngine.Moveable;
 
 public class Lobster extends GamePiece implements Moveable{
 	
+	
 	//Constructor class that establishes values using super
 	public Lobster(char symbol, String label, int location) {
 		super (symbol,  label,  location);
@@ -26,9 +27,25 @@ public class Lobster extends GamePiece implements Moveable{
 	
 	@Override
 	public void move(Drawable[] gameBoard, int playerLocation){
-		Random rand = new Random();
-		int randomLocation = rand.nextInt(21);
+		//replace current location as empty
+		gameBoard[this.getLocation()] = null;
+		
+		//new location
+		int randomLocation;
+		
+		
+		//do while to see if the new random location is valid
+		do {
+			//generate a new location with an ever changing seed
+			long seed = System.currentTimeMillis();
+			Random rand = new Random(seed);
+			randomLocation = rand.nextInt(21);
+		}while(gameBoard[this.getLocation()] != null);
+		
+		
+		//set the new location for the lobster
 		this.setLocation(randomLocation);
+		gameBoard[randomLocation] = this;
 	}
 	
 	
