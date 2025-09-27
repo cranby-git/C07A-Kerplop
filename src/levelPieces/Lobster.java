@@ -1,18 +1,20 @@
 package levelPieces;
 
-import java.util.Random;
-import gameEngine.Drawable;
 import gameEngine.InteractionResult;
 import gameEngine.Moveable;
+import gameEngine.Drawable;
+
+import java.util.Random;
+import java.util.ArrayList;
 
 public class Lobster extends GamePiece implements Moveable{
-	
 	
 	//Constructor class that establishes values using super
 	public Lobster(char symbol, String label, int location) {
 		super (symbol,  label,  location);
 	}
 	
+	// kill if next to the player
 	@Override
 	public InteractionResult interact(Drawable [] gameBoard, int playerLocation) {
 		
@@ -27,25 +29,20 @@ public class Lobster extends GamePiece implements Moveable{
 	
 	@Override
 	public void move(Drawable[] gameBoard, int playerLocation){
-		//replace current location as empty
-		gameBoard[this.getLocation()] = null;
+		// find all valid spots
+		ArrayList<Integer> validSpots = new ArrayList<Integer>();
+		for (int i = 0; i < gameBoard.length; ++i) {
+			if (gameBoard[i] == null) {
+				validSpots.add(i);
+			}
+		}
 		
-		//new location
-		int randomLocation;
-		
-		
-		//do while to see if the new random location is valid
-		do {
-			//generate a new location with an ever changing seed
-			long seed = System.currentTimeMillis();
-			Random rand = new Random(seed);
-			randomLocation = rand.nextInt(21);
-		}while(gameBoard[this.getLocation()] != null);
-		
-		
-		//set the new location for the lobster
-		this.setLocation(randomLocation);
-		gameBoard[randomLocation] = this;
+		//generate random number and update relevant positions
+		Random rand = new Random();
+		int newLocation = rand.nextInt(validSpots.size());
+		gameBoard[newLocation] = gameBoard[super.getLocation()];
+		gameBoard[super.getLocation()] = null;
+		super.setLocation(newLocation);
 	}
 	
 	
