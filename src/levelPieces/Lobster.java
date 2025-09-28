@@ -5,7 +5,6 @@ import gameEngine.Moveable;
 import gameEngine.Drawable;
 
 import java.util.Random;
-import java.util.ArrayList;
 
 public class Lobster extends GamePiece implements Moveable{
 	
@@ -29,20 +28,22 @@ public class Lobster extends GamePiece implements Moveable{
 	
 	@Override
 	public void move(Drawable[] gameBoard, int playerLocation){
-		// find all valid spots
-		ArrayList<Integer> validSpots = new ArrayList<Integer>();
-		for (int i = 0; i < gameBoard.length; ++i) {
-			if (gameBoard[i] == null) {
-				validSpots.add(i);
-			}
-		}
 		
-		//generate random number and update relevant positions
-		Random rand = new Random();
-		int newLocation = rand.nextInt(validSpots.size());
-		gameBoard[newLocation] = gameBoard[super.getLocation()];
-		gameBoard[super.getLocation()] = null;
-		super.setLocation(newLocation);
+		gameBoard[this.getLocation()] = null;
+		
+		int newLocation;
+		
+		
+		do {
+			//generate random number and update relevant positions
+			long seed = System.currentTimeMillis();
+			Random rand = new Random(seed);
+			newLocation = rand.nextInt(21);
+		}while(gameBoard[newLocation] != null);
+		
+		
+		gameBoard[newLocation] = gameBoard[this.getLocation()];
+		this.setLocation(newLocation);
 	}
 	
 	

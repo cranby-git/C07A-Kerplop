@@ -3,7 +3,6 @@ package levelPieces;
 import gameEngine.InteractionResult;
 import gameEngine.Moveable;
 import gameEngine.Drawable;
-import gameEngine.GameEngine;
 
 import java.util.ArrayList;
 import java.util.Random;
