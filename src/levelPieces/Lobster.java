@@ -41,8 +41,8 @@ public class Lobster extends GamePiece implements Moveable{
 			newLocation = rand.nextInt(21);
 		}while(gameBoard[newLocation] != null);
 		
-		
-		gameBoard[newLocation] = gameBoard[this.getLocation()];
+		// set board 
+		gameBoard[newLocation] = this;
 		this.setLocation(newLocation);
 	}
 	

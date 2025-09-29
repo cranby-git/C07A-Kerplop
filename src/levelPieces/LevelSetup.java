@@ -36,7 +36,7 @@ public class LevelSetup {
 			pieces.add(f2);
 			pieces.add(lob);
 			pieces.add(rube);
-			canMove.add(blinky);
+			pieces.add(blinky);
 			
 			
 			canMove.add(lob);

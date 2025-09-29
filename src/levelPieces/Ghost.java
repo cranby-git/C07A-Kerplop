@@ -37,7 +37,7 @@ public class Ghost extends GamePiece implements Moveable{
 		// if space is empty
 		if(gameBoard[super.getLocation() + direction] == null) {
 			// if on a piece, don't remove that piece
-			if(gameBoard[super.getLocation()] != null) {
+			if(gameBoard[super.getLocation()] == this) {
 				gameBoard[super.getLocation()] = null;
 			}
 			gameBoard[super.getLocation() + direction] = this;
@@ -45,7 +45,7 @@ public class Ghost extends GamePiece implements Moveable{
 		// otherwise move but don't go on the board
 		} else {
 			// if on a piece, don't remove that piece
-			if(gameBoard[super.getLocation()] != null) {
+			if(gameBoard[super.getLocation()] == this) {
 				gameBoard[super.getLocation()] = null;
 			}
 			super.setLocation(super.getLocation() + direction);

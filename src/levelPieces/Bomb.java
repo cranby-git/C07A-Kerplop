@@ -15,7 +15,7 @@ public class Bomb extends GamePiece implements Moveable {
 	// basic constructor
 	public Bomb(char symbol, String label, int location) {
 		super(symbol, label, location);
-		primed = false;
+		primed = true;
 	}
 	
 	@Override 
@@ -45,8 +45,7 @@ public class Bomb extends GamePiece implements Moveable {
 			// choose random valid spot
 			Random rand = new Random();
 			int newLocation = rand.nextInt(validSpots.size());
-			gameBoard[newLocation] = gameBoard[super.getLocation()];
-			gameBoard[super.getLocation()] = null;
+			gameBoard[newLocation] = this;
 			super.setLocation(newLocation);
 			primed = true;
 		}
