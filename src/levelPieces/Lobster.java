@@ -36,6 +36,10 @@ public class Lobster extends GamePiece implements Moveable{
 		
 		
 		do {
+//			Bug of the week code
+//			long seed = System.currentTimeMillis();
+//			Random rand = new Random(seed);
+			
 			//generate random number and update relevant positions
 			Random rand = new Random();
 			newLocation = rand.nextInt(GameEngine.BOARD_SIZE);

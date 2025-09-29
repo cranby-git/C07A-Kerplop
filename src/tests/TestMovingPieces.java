@@ -80,7 +80,7 @@ public class TestMovingPieces {
 			}
 		}
 		//should have traveled to every other spot with the small 
-		//chance that one spot was not visited
-		Assert.assertEquals(19, spotsVisited);
+		//chance that one spot was not visited (~0.38%)
+		Assert.assertEquals(19, spotsVisited, 1);
 	}
 }
