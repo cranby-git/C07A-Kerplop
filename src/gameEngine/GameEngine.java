@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import levelPieces.GamePiece;
 import levelPieces.LevelSetup;
 
+import tests.*;
+
 /**
  * Framework for LevelGame.
  * 

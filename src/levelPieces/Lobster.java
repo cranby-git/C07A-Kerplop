@@ -3,6 +3,7 @@ package levelPieces;
 import gameEngine.InteractionResult;
 import gameEngine.Moveable;
 import gameEngine.Drawable;
+import gameEngine.GameEngine;
 
 import java.util.Random;
 
@@ -36,9 +37,8 @@ public class Lobster extends GamePiece implements Moveable{
 		
 		do {
 			//generate random number and update relevant positions
-			long seed = System.currentTimeMillis();
-			Random rand = new Random(seed);
-			newLocation = rand.nextInt(21);
+			Random rand = new Random();
+			newLocation = rand.nextInt(GameEngine.BOARD_SIZE);
 		}while(gameBoard[newLocation] != null);
 		
 		// set board 
