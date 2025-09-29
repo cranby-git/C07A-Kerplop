@@ -11,6 +11,10 @@ public class Ghost extends GamePiece implements Moveable{
 	// the direction 
 	int direction;
 	
+	public int getDirection() {
+		return direction;
+	}
+	
 	// Constructor
 	public Ghost(char symbol, String label, int location) {
 		super(symbol, label, location);

@@ -81,4 +81,71 @@ public class TestInteractions {
 			Assert.assertEquals(InteractionResult.NONE, testTesla.interact(gameBoard, i));
 	}
 	
+	/*
+	 * The ghost will start in the middle of the board, then a check is made to
+	 * ensure the player would only be damaged if they were in the space that
+	 * the ghost was facing. The ghost then traverses the board to turn around
+	 * and the same check is made.
+	 */
+	@Test
+	public void testGhost() {
+		// set up board
+		Drawable[] gameBoard = new Drawable[GameEngine.BOARD_SIZE];
+		Ghost testGhost = new Ghost('G', "testGhost", 10);
+		gameBoard[10] = testGhost;
+		
+		// test that the player only takes damage if directly adjacent
+		for(int i = 0; i < GameEngine.BOARD_SIZE; i++) {
+			if(i - testGhost.getLocation() == testGhost.getDirection()) {
+				Assert.assertEquals(InteractionResult.HIT, testGhost.interact(gameBoard, i));
+			} else {
+				Assert.assertEquals(InteractionResult.NONE, testGhost.interact(gameBoard, i));
+			}
+		}
+		
+		//turn around
+		for(int i = 0; i < GameEngine.BOARD_SIZE; i++)
+			testGhost.move(gameBoard, 0);
+		
+		//test again for other direction
+		for(int i = 0; i < GameEngine.BOARD_SIZE; i++) {
+			if(i - testGhost.getLocation() == testGhost.getDirection()) {
+				Assert.assertEquals(InteractionResult.HIT, testGhost.interact(gameBoard, i));
+			} else {
+				Assert.assertEquals(InteractionResult.NONE, testGhost.interact(gameBoard, i));
+			}
+		}
+	}
+	
+	/*
+	 * 
+	 */
+	@Test
+	public void testFairy() {
+		
+	}
+	
+	/*
+	 * 
+	 */
+	@Test
+	public void testRuby() {
+		
+	}
+	
+	/*
+	 * 
+	 */
+	@Test 
+	public void testWunkus() {
+		
+	}
+	
+	/*
+	 * 
+	 */
+	@Test
+	public void testLobster() {
+		
+	}
 }
