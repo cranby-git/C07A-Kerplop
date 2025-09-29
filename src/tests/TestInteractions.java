@@ -122,6 +122,23 @@ public class TestInteractions {
 	 */
 	@Test
 	public void testFairy() {
+		// set up board
+		Drawable[] gameBoard = new Drawable[GameEngine.BOARD_SIZE];
+		Fairy testFairy = new Fairy('F', "testFairy", 10);
+		gameBoard[10] = testFairy;
+		
+		//test that when the fairy and player are on same square that points go up
+		//test that when fairy and player are seperate nothing happens
+		for(int i =0; i< GameEngine.BOARD_SIZE; i++){
+			if(i == 10) {
+				Assert.assertEquals(InteractionResult.GET_POINT, testFairy.interact(gameBoard, i));
+			}
+				
+			else {
+				Assert.assertEquals(InteractionResult.NONE, testFairy.interact(gameBoard, i));
+			}
+				
+		}
 		
 	}
 	
@@ -130,7 +147,23 @@ public class TestInteractions {
 	 */
 	@Test
 	public void testRuby() {
+		// set up board
+		Drawable[] gameBoard = new Drawable[GameEngine.BOARD_SIZE];
+		Ruby testRuby = new Ruby('R', "testRuby", 10);
+		gameBoard[10] = testRuby;
 		
+		
+		//test that when the Ruby and player are on same square that advance happens
+		//test that when Ruby and player are seperate nothing happens
+		for(int i =0; i< GameEngine.BOARD_SIZE; i++){
+			if(i == 10) {
+				Assert.assertEquals(InteractionResult.ADVANCE, testRuby.interact(gameBoard, i));
+			}
+			else {
+				Assert.assertEquals(InteractionResult.NONE, testRuby.interact(gameBoard, i));
+		
+			}
+		}
 	}
 	
 	/*
@@ -138,6 +171,21 @@ public class TestInteractions {
 	 */
 	@Test 
 	public void testWunkus() {
+		// set up board
+		Drawable[] gameBoard = new Drawable[GameEngine.BOARD_SIZE];
+		Wunkus testWunkus = new Wunkus('W', "testWunkus", 10);
+		gameBoard[10] = testWunkus;
+		
+		//test that when the Wunkus and player are on same square that a hit happens
+		//test that when Lobster and player are seperate nothing happens
+		for(int i =0; i< GameEngine.BOARD_SIZE; i++){
+			if(i==10) {
+				Assert.assertEquals(InteractionResult.HIT, testWunkus.interact(gameBoard, i));
+			}
+			else {
+				Assert.assertEquals(InteractionResult.NONE, testWunkus.interact(gameBoard, i));
+			}
+		}
 		
 	}
 	
@@ -146,6 +194,21 @@ public class TestInteractions {
 	 */
 	@Test
 	public void testLobster() {
+		// set up board
+		Drawable[] gameBoard = new Drawable[GameEngine.BOARD_SIZE];
+		Lobster testLobster = new Lobster('L', "testLobster", 10);
+		gameBoard[10] = testLobster;
+		
+		//test that when the Lobster and player are one space away that a hit happens
+		//test that when Lobster and player are seperate nothing happens
+		for(int i =0; i< GameEngine.BOARD_SIZE; i++){
+			if(i==9 || i ==11) {
+				Assert.assertEquals(InteractionResult.KILL, testLobster.interact(gameBoard, i));
+			}
+			else {
+				Assert.assertEquals(InteractionResult.NONE, testLobster.interact(gameBoard, i));
+			}
+		}
 		
 	}
 }
